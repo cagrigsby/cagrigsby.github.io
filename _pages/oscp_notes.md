@@ -5,7 +5,7 @@ permalink: /oscp_notes/
 author_profile: true
 ---
 
-### Disclaimer - This page is meant as a personal reference page; there exist better places on the internet to learn penetration testing concepts and commands. 
+### Disclaimer - This page is meant as a personal reference page; there exist better places on the internet to learn penetration testing concepts and commands. Furthermore, this template is rendering markdown in a way that is not consistent with any editor I seem to find. As such, some investigation may be required. 
 
 # Preliminary Scanning 
 ## nmap
