@@ -309,27 +309,32 @@ OR
 
 # Port Forwarding
 ## Ligolo
-https://medium.com/@Thigh_GoD/ligolo-ng-finally-adds-local-port-forwarding-5bf9b19609f9 <br>
+[Guide)[https://medium.com/@Thigh_GoD/ligolo-ng-finally-adds-local-port-forwarding-5bf9b19609f9] <br>
 **Basic usage**
+<br>
 From Kali:
 		- sudo ip tuntap add user pop mode tun ligolo
 		- sudo ip link set ligolo up
 		- sudo ip route add \<target ip.0/24> dev ligolo
 		- ./proxy -selfcert
+<br>
 From Windows Target (agent file):
 		- .\ligolo.exe -connect \<kali IP>:11601 -ignore-cert
+<br>
 From Linux Target (agent file):
 		- ligolo -connect \<kali IP>:11601 -ignore-cert
+<br>
 Then from Kali:
 		- Session
 		- 1
 		- Start
 		- listener_add --addr 0.0.0.0:5555 --to 127.0.0.1:6666
-			- This allows you to access port 5555 on target from 127.0.0.1:6666 (kali machine). <br>
-
+			- This allows you to access port 5555 on target from 127.0.0.1:6666 (kali machine). 
+<br>
  **Local Port Forwarding:**
 	- `ip route add 240.0.0.1/32 dev`
 	- **240.0.0.1** will point to whatever machine Ligolo-ng has an active tunnel on.
+<br>
 ## Other tools
 While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I found that [Ligolo-ng](https://github.com/nicocha30/ligolo-ng/releases) was about to provide all of the same functionality and more simply. That said, I am linking a guide discusess the other tools. Here is frankyyano's [Pivoting & Tunneling guide](https://medium.com/@frankyyano/pivoting-tunneling-for-oscp-and-beyond-33a57dd6dc69). 
 
