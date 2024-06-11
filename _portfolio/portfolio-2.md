@@ -1,12 +1,12 @@
 ---
 title: "Flimsy - Proving Grounds"
-excerpt: "A Writeup of the Flimsy Box from Proving Grounds<br/><img src='/images/Flimsy/initial_cover.png'>"
+excerpt: "A Writeup of the Flimsy Box from Proving Grounds<br/><img src='/images/Flimsy/flimsy_cover.png'>"
 collection: portfolio
 ---
 
 Here's another relatively simple box from [Proving Grounds](https://www.offsec.com/labs/) called Flimsy. It turned out to be a decent reminder to be patient and diligent when I'm working through these labs because I would have saved a lot of trouble if I had just done a better job of one simple thing. Right off the bat I ran a simple nmap scan showing ports 22, 80, and 3306 as open. That's going to point toward web exploits or some kind of SQLi, so it makes sense to check out the web page while running a more detailed scans. 
 
-![Flimsy Landing Page](/images/Flimsy/initial_cover.png){: .center-aligned width="800px"}
+![Flimsy Landing Page](/images/Flimsy/flimsy_cover.png){: .center-aligned width="800px"}
 
 Overall, the web page doesn't seem to have much, but a contact page, and subsequent feroxbuster scans seemed to only show /js, /css and /img sub-directories which I couldn't find anything interesting in. Knowing that there is a running MySQL server, I attempted to perform SQLi on the contact form, but everything I submitted returned a 405 Not Allowed response from nginx. 
 
