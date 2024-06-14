@@ -1,8 +1,9 @@
 ---
 title: "Helpdesk - Proving Grounds"
-excerpt: "A Writeup of the Helpdesk Box from Proving Grounds<br/><img src='/images/Helpdesk/8080login_page.png'>"
+excerpt: "A Writeup of the Helpdesk Box from Proving Grounds<br/><img src='images/Helpdesk/8080login_page.png'>"
 collection: portfolio
 ---
+
 
 Here's another box from [Proving Grounds](https://www.offsec.com/labs/) called Helpdesk. It was recommended as part of TJ Null's OSCP [lab prep list](https://docs.google.com/spreadsheets/u/1/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/htmlview#) which I've been going through as I prepare for my exam. The initial nmap scan revealed these open ports:
 
