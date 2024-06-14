@@ -1,6 +1,6 @@
 ---
 title: "Helpdesk - Proving Grounds"
-excerpt: "A Writeup of the Helpdesk Box from Proving Grounds<br/><img src='/images/Flimsy/initial_cover.png'>"
+excerpt: "A Writeup of the Helpdesk Box from Proving Grounds<br/><img src='/images/Helpdesk/8080login_page.png'>"
 collection: portfolio
 ---
 
