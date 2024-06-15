@@ -1,6 +1,6 @@
 ---
 title: "Astronaut - Proving Grounds"
-excerpt: "A Writeup of the Astronaut Box from Proving Grounds<br/><img src='/images/Algernon/Logs.png'>"
+excerpt: "A Writeup of the Astronaut Box from Proving Grounds<br/><img src='/images/Astronaut/grav_admin.png'>"
 collection: portfolio
 ---
 
