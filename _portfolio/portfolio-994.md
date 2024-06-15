@@ -1,6 +1,6 @@
 ---
 title: "Exfiltrated - Proving Grounds"
-excerpt: "A Writeup of the Exfiltrated Box from Proving Grounds<br/><img src='/images/Exfiltrated/subrion.png.png'>"
+excerpt: "A Writeup of the Exfiltrated Box from Proving Grounds<br/><img src='/images/Exfiltrated/subrion.png'>"
 collection: portfolio
 ---
 
