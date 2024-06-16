@@ -1,6 +1,6 @@
 ---
 title: "Ruby Dome - Proving Grounds"
-excerpt: "A Writeup of the Exfiltrated Box from Proving Grounds<br/><img src='/images/RubyDome/RubyDome.png'>"
+excerpt: "A Writeup of the Ruby Dome Box from Proving Grounds<br/><img src='/images/RubyDome/RubyDome.png'>"
 collection: portfolio
 ---
 
