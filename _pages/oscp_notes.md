@@ -9,7 +9,7 @@ author_profile: true
 
 # Preliminary Scanning 
 ## nmap
--   Initial scan - output=$(sudo nmap -p- $IP --min-rate 500); echo "$output"; echo -n "Ports: "; echo "$output" | grep '/tcp' | cut -d '/' -f 1 | paste -sd ','
+-   Initial scan - output=$(sudo nmap -p- $IP --min-rate 500); echo "$output"; echo -n "Ports: "; echo "$output" \| grep '/tcp' \| cut -d '/' -f 1 \| paste -sd ','
 -   Then more detailed - Nmap -A -sC -p($ports) $IP
 	- Where the open ports from the previous scan follow the -p flag
 	- Ex: -p22,80,445
