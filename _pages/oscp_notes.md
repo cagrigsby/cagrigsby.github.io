@@ -21,10 +21,10 @@ author_profile: true
 	- The nmap scripting engine can also be used for more thorough scanning
 	- nmap --script=\<script1>\.nse, \<script2>\.nse $IP
 		- Find scripts: grep \<search term>\ /usr/share/nmap/scripts/*.nse
-		- Help on script: nmap --script-help=\<script.nse>
-<br>## nmapautomator
-- https://github.com/21y4d/nmapAutomator
-- ./nmapAutomator.sh --host \<Target IP> --type All (or Network/Port/Script/Full/UDP/Vulns/Recon)
+		- Help on script: nmap --script-help=\<script.nse> <br>
+
+## nmapautomator (https://github.com/21y4d/nmapAutomator)
+- ./nmapAutomator.sh --host \<Target IP> --type Full (or Network/Port/Script/All/UDP/Vulns/Recon)
 
 # Web
 ## Directory Scanning
