@@ -9,9 +9,8 @@ author_profile: true
 
 # Preliminary Scanning 
 ## nmap
--   Basic scan - Nmap $IP
-	- Checks 1000 most common ports
--   Then more detailed - Nmap -A -p $IP
+-   Initial scan - output=$(sudo nmap -p- $IP --min-rate 500); echo "$output"; echo -n "Ports: "; echo "$output" | grep '/tcp' | cut -d '/' -f 1 | paste -sd ','
+-   Then more detailed - Nmap -A -sC -p($ports) $IP
 	- Where the open ports from the previous scan follow the -p flag
 	- Ex: -p22,80,445
 -   nmap -sS -Pn -p- $IP
@@ -23,7 +22,7 @@ author_profile: true
 		- Find scripts: grep \<search term>\ /usr/share/nmap/scripts/*.nse
 		- Help on script: nmap --script-help=\<script.nse> <br>
 
-## nmapautomator (https://github.com/21y4d/nmapAutomator)
+## nmapAutomator (https://github.com/21y4d/nmapAutomator)
 - ./nmapAutomator.sh --host \<Target IP> --type Full (or Network/Port/Script/All/UDP/Vulns/Recon)
 
 # Web
@@ -42,6 +41,7 @@ author_profile: true
 - feroxbuster -u \<url> --timeout \<timeout_in_seconds>
 - feroxbuster -u \<url> --filter-status 404,403,400 --thorough -r
 - feroxbuster -u \<url>:\<alternative port>
+- feroxbuster -u \<url> --extensions php,rb,txt
 
 ## Directory Traversal
 On Linux, we can use the /etc/passwd file to test directory traversal vulnerabilities. On Windows, we can use the file C:\Windows\System32\drivers\etc\hosts to test directory traversal vulnerabilities, which is readable by all local users. In Linux systems, a standard vector for directory traversal is to list the users of the system by displaying the contents of /etc/passwd. Check for private keys in their home directory, and use them to access the system via SSH.
