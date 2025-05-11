@@ -1,6 +1,6 @@
 ---
 layout: writeup
-title: hokkaido - Proving Grounds
+title: Hokkaido - Proving Grounds
 date: 2024-07-31 13:32:20 +0300
 description: A Writeup of the hokkaido Box from Proving Grounds
 image: # /assets/images/Flu/Flu_1.png
