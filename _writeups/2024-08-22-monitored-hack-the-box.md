@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: Monitored - HackTheBox
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-22 13:32:20 +0300
 description: A Writeup of the Monitored Box from HackTheBox
 image: # /assets/images/Monitored/Monitored.png
 fig-caption: # Add figcaption (optional)

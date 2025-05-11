@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: Jacko - Proving Grounds
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-09 13:32:20 +0300
 description: A Writeup of the Jacko Box from Proving Grounds
 image: # /assets/images/Jacko/Jacko1.png
 fig-caption: # Add figcaption (optional)

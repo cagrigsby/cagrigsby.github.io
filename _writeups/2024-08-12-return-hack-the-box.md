@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: Return - HackTheBox
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-12 13:32:20 +0300
 description: A Writeup of the Forest Box from HackTheBox
 image: # /assets/images/Return/Return.png
 fig-caption: # Add figcaption (optional)

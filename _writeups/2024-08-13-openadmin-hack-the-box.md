@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: OpenAdmin - HackTheBox
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-13 13:32:20 +0300
 description: A Writeup of the OpenAdmin Box from HackTheBox
 image: # /assets/images/OpenAdmin/OpenAdmin.png
 fig-caption: # Add figcaption (optional)

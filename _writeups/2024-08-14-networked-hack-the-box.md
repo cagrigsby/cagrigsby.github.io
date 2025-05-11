@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: Networked - HackTheBox
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-14 13:32:20 +0300
 description: A Writeup of the Networked Box from HackTheBox
 image: # /assets/images/Networked/Networked.png
 fig-caption: # Add figcaption (optional)

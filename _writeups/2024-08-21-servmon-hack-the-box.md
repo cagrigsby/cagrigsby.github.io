@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: ServMon - HackTheBox
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-21 13:32:20 +0300
 description: A Writeup of the ServMon Box from HackTheBox
 image: # /assets/images/ServMon/ServMon.png
 fig-caption: # Add figcaption (optional)

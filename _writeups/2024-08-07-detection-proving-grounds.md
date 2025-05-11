@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: Detection - Proving Grounds
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-07 13:32:20 +0300
 description: A Writeup of the Detection Box from Proving Grounds
 image: # /assets/images/Detection/Detection.png
 fig-caption: # Add figcaption (optional)

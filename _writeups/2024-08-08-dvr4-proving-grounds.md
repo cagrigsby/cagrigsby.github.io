@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: DVR4 - Proving Grounds
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-08 13:32:20 +0300
 description: A Writeup of the DVR4 Box from Proving Grounds
 image: # /assets/images/DVR4/DVR4.png
 fig-caption: # Add figcaption (optional)

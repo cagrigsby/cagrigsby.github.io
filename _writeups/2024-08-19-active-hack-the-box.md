@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: Active - HackTheBox
-date: 2024-07-12 13:32:20 +0300
+date: 2024-08-19 13:32:20 +0300
 description: A Writeup of the Active Box from HackTheBox
 image: # /assets/images/Active/Active.png
 fig-caption: # Add figcaption (optional)
