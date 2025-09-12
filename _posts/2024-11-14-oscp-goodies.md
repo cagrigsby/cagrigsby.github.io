@@ -391,15 +391,15 @@ I have a script that I run on fresh Kali spinups, and these are the tools I tend
 ### Websites/Gitbooks
 These are pretty much all of my relevant bookmarks on my Kali machine. You will probably be using most of these, if not all.
 
-[Crackstation](https://crackstation.net/) - Throw your password hashes in here and see what comes out. Often nothing, but it also often identifies the hash type which is nice. 
-[CyberChef](https://gchq.github.io/CyberChef/)- One stop shop for transforming data to and from base64, URL encoding, etc. 
-[exploit-db](https://www.exploit-db.com/) - You know this one. 
-[GTFOBins](https://gtfobins.github.io/) - You know GTFOBins from the course material, it rocks. 
-[HackTricks](https://book.hacktricks.xyz/) - Very much the gold standard. Get used to putting `$searchTerm hacktricks` into google. 
-[NTLM.PW](https://ntlm.pw/) - Cracks some NTLM hashes, maybe redundant with crackstation. 
-[PayloadsAllTheThings](https://swisskyrepo.github.io/PayloadsAllTheThings/) in gitbook form. 
-[RevShells](https://www.revshells.com/) - You probably already know about RevShells, but it allows you to input your IP and listening port and plugs them into a bunch of reverse shells automatically. 
-[wadcoms](https://wadcoms.github.io/)- This is a great little tool. It is an interactive cheat sheet, containing a curated list of offensive security tools and their respective commands, to be used against Windows/AD environments. You can select what you have such as a user but no password or an NTLM hash, and then it filters what commands are available. I have worked on a tool to further this work, so we'll see about that in the future. 
+- [Crackstation](https://crackstation.net/) - Throw your password hashes in here and see what comes out. Often nothing, but it also often identifies the hash type which is nice.
+- [CyberChef](https://gchq.github.io/CyberChef/)- One stop shop for transforming data to and from base64, URL encoding, etc.
+- [exploit-db](https://www.exploit-db.com/) - You know this one.
+- [GTFOBins](https://gtfobins.github.io/) - You know GTFOBins from the course material, it rocks.
+- [HackTricks](https://book.hacktricks.xyz/) - Very much the gold standard. Get used to putting `$searchTerm hacktricks` into google.
+- [NTLM.PW](https://ntlm.pw/) - Cracks some NTLM hashes, maybe redundant with crackstation.
+- [PayloadsAllTheThings](https://swisskyrepo.github.io/PayloadsAllTheThings/) in gitbook form.
+- [RevShells](https://www.revshells.com/) - You probably already know about RevShells, but it allows you to input your IP and listening port and plugs them into a bunch of reverse shells automatically.
+- [wadcoms](https://wadcoms.github.io/)- This is a great little tool. It is an interactive cheat sheet, containing a curated list of offensive security tools and their respective commands, to be used against Windows/AD environments. You can select what you have such as a user but no password or an NTLM hash, and then it filters what commands are available. I have worked on a tool to further this work, so we'll see about that in the future. 
 
 Other cheatsheets/gitbooks I have bookmarked:
 - [Cheatsheat.haax.fr](https://cheatsheet.haax.fr/)
