@@ -81,8 +81,8 @@ With no creds:
 With a username:
 - `hydra -l $user -P passwords.txt 192.168.100.101 ssh`
 
-With a passwords:
-- ` hydra -L usernames.txt -p $password 192.168.100.101 ssh`
+With a password:
+- `hydra -L usernames.txt -p $password 192.168.100.101 ssh`
 
 Useful nmap scripts:
 - ssl-heartbleed.nse
