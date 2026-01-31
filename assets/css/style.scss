@@ -12,7 +12,7 @@
 // Header styles scoped to main content area for Panthera theme
 .pan-layout-content {
     h1, h2, h3, h4, h5 {
-      color: #101935;
+      color: #101935; /* Prussian Blue */
       font-weight: 600;
       margin-top: 1.5em;
       margin-bottom: 0.8em;
@@ -20,7 +20,7 @@
   
     h1 {
       font-size: 2.2em;
-      border-bottom: 2px solid #101935;
+      border-bottom: 2px solid #101935; /* Prussian Blue */
       padding-bottom: 0.3em;
     }
   
@@ -48,22 +48,22 @@
 
 // Custom styles for code blocks 
 code {
-    background-color: #DDCBBD !important; /* Champagne pink background */
-    border: 1px solid #DDCBBD; /* Amaranth pink border = #FC9BC2 */
+    background-color: #DDCBBD !important; /* Powder petal background */
+    border: 1px solid #DDCBBD; /* Powder petal background */
     padding: 1px 2px; /* Padding around the code (was 2px 4px) */
     border-radius: 4px; /* Rounded corners */
     font-family: 'Open Sans', monospace; /* Monospaced font */ //said 'Courier New', Courier, monospace
-    color: 101935; /* Blue text color for contrast */
+    color: 101935; /* Prussian blue text color for contrast */
 }
 
 pre {
-    background-color: #DDCBBD !important; /* Champagne pink background */
-    border: 1px solid #DDCBBD; /* Amaranth pink border = #FC9BC2 */
+    background-color: #DDCBBD !important; /* Powder petal background */
+    border: 1px solid #DDCBBD; /* Powder petal background */
     padding: 10px; /* More padding for preformatted code blocks */
     border-radius: 4px; /* Rounded corners */
     overflow-x: auto; /* Scroll horizontally if the code is too wide */
     font-family: 'Open Sans', monospace; /* Monospaced font */ //said 'Courier New', Courier, monospace
-    color: 101935; /* Blue text color for contrast */
+    color: 101935; /* Prussian Blue */
 }
 
 pre code {
@@ -73,13 +73,13 @@ pre code {
 
 // highlight color change
 ::selection {
-    background: #F686BD;  /* The highlight color you want */
-    color: #101935;      /* Text color when highlighted */
+    background: #FC9CC2;  /* Pink Mist - The highlight color you want */
+    color: #101935;      /* Prussian Blue - Text color when highlighted */
 }
 
 ::-moz-selection {
-    background: #F686BD;  /* Firefox needs its own declaration */
-    color: #101935;
+    background: #FC9CC2;  /* Pink Mist Firefox needs its own declaration */
+    color: #101935; /* Prussian Blue */
 }
 
 //padding 

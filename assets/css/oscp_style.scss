@@ -5,7 +5,7 @@
 
 // Inline code styling (single backticks)
 code.highlighter-rouge {
-    background-color: #DDCBBD;
+    background-color: #EFD6AC; /* Wheat */
     color: #101935;
     padding: 2px 4px;
     border-radius: 3px;
@@ -15,7 +15,7 @@ code.highlighter-rouge {
 .highlight {
     margin: 1em 0;
     padding: 1em;
-    background-color: #DDCBBD;
+    background-color: #EFD6AC; /* Wheat */
     border-radius: 4px;
     
     pre {
@@ -26,13 +26,13 @@ code.highlighter-rouge {
     
     code {
         background-color: transparent;
-        color: #101935;
+        color: #101935; /* Prussian Blue */
     }
 }
 
 pre.highlight {
-    background-color: #DDCBBD;
-    color: #101935;
+    background-color: #EFD6AC; /* Wheat */
+    color: #101935; /* Prussian Blue */
 }
 
 // Target headers only in the main content area
@@ -40,7 +40,7 @@ pre.highlight {
     h1 {
         font-size: 2.5em;
         font-weight: 800;
-        border-bottom: 2px solid #101935;
+        border-bottom: 2px solid #101935; /* Prussian Blue */
         padding-bottom: 0.3em;
         margin-top: 1.5em;
     }
@@ -48,7 +48,7 @@ pre.highlight {
     h2 {
         font-size: 2em;
         font-weight: 700;
-        border-bottom: 1px solid #101935;
+        border-bottom: 1px solid #101935; /* Prussian Blue */
         padding-bottom: 0.2em;
         margin-top: 1.2em;
     }
@@ -112,7 +112,7 @@ pre.highlight {
             background-color: rgba(255, 255, 255, 0.1);
             
             .toc-link {
-                color: #F686BD;
+                color: #C76B98; /* Sweet Peony */
             }
         }
 
@@ -130,18 +130,18 @@ pre.highlight {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #ffffff;
+        color: #F6EFEE; /* Snow */
         padding: 0;
         margin-right: 4px;
         font-size: 14px;
         line-height: 1;
         
         &[aria-expanded="true"] {
-            color: #F686BD;
+            color: #C76B98; /* Sweet Peony */
         }
         
         &:hover {
-            color: #F686BD;
+            color: #C76B98; /* Sweet Peony */
         }
     }
     
@@ -159,7 +159,7 @@ pre.highlight {
         flex-grow: 1;
         
         &:hover {
-            color: #F686BD;
+            color: #C76B98; /* Sweet Peony */
         }
     }
     
