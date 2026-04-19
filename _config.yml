@@ -66,7 +66,7 @@ social_icons:
     icon: /assets/icons/tryhackme.png
     
   - name: onlyfans
-    link: /assets/images/harry_potter.gif
+    link: /assets/images/onlyfans.gif
     icon: /assets/icons/onlyfans.png
 
 # trying to add a collection for Writeups
