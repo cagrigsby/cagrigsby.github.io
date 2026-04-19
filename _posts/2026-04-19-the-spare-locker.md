@@ -1,12 +1,14 @@
 ---
 layout: post
 title: The Spare Locker
-date: 2020-07-11 13:32:20 +0300
+date: 2026-04-19 13:32:20 +0300
 description: A fond memory of a shared adolescent library
 image: /assets/images/students.jpg
 fig-caption: # Add figcaption (optional)
 tags: [personal]
 ---
+
+*Originally written 7/11/2020*
 
 When I was fifteen my school expanded into a second building, allowing the high school to spread out, and installing empty space where there had once been gangly bundles of nervous energy. The change was particularly noticeable in the freshman hallways, now only half full compared to when it housed multiple grades. As a result, there were a lot of empty lockers, which somehow proved to be a great source of excitement. 
 
