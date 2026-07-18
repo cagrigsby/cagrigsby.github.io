@@ -3,7 +3,7 @@ layout: post
 title: OSCP+ Guide, Tips, and Resources
 #date: 2024-11-14 13:32:20 +0300
 description: Everything I Wish I'd Known Outside the Course Material
-image: /assets/images/bloodhound_header.jpg
+image: /assets/images/oscp_plus.jpg
 fig-caption: # Add figcaption (optional)
 tags: [personal, professional]
 ---
