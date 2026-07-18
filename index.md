@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Content!
+title: Now AI Free!
 ---
 
 # About Me
